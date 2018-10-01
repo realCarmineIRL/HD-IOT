@@ -9,13 +9,14 @@ public class EggBoxes{
     private int numberOfEggs;
     private int numberOfBoxes;
     private int eggsLeftOver;
-    final private int dozen=12;
+    private final int dozen;
 
     //Constructor
     public EggBoxes(){
         numberOfEggs=0;
         numberOfBoxes=0;
         eggsLeftOver=0;
+        dozen=12;
     }
 
     //Setters
