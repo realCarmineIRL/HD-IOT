@@ -12,12 +12,16 @@ public class LotteryApp{
         List<Integer> lotteryLine;
         LotteryGenLine myLotteryGenLine;
         LotteryCheckUserLine myLotteryCheckUserLine;
+        LotteryPrize myLotteryPrize;
+        String prize;
         String option;
-
-        myLotteryGenLine = new LotteryGenLine();
-        myLotteryCheckUserLine = new LotteryCheckUserLine();
+        
         
         do {
+
+            myLotteryGenLine = new LotteryGenLine();
+            myLotteryCheckUserLine = new LotteryCheckUserLine();
+            myLotteryPrize = new LotteryPrize();
 
             myLotteryGenLine.genLotteryLine();
             lotteryLine = myLotteryGenLine.getLotteryLine();
@@ -39,10 +43,12 @@ public class LotteryApp{
                 List<Integer> matchedNumbers = myLotteryCheckUserLine.getUserLine();
         
                 matchedNumbers.retainAll(lotteryLine);
-        
-                System.out.println(userLines[i]);
-                System.out.println(matchedNumbers);
 
+                myLotteryPrize.setGuessedNumbers(matchedNumbers.size());
+                myLotteryPrize.checkPrize();
+                prize = myLotteryPrize.getPrize();
+                System.out.println(prize);
+                
             }
 
             option = JOptionPane.showInputDialog(null,"Would you like to continue Y or N:");
