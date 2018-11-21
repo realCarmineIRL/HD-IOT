@@ -6,6 +6,8 @@ Carmine
 import java.util.*;
 import javax.swing.*;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 public class LotteryApp{
     public static void main(String[] args) {
         
@@ -13,9 +15,12 @@ public class LotteryApp{
         LotteryGenLine myLotteryGenLine;
         LotteryCheckUserLine myLotteryCheckUserLine;
         LotteryPrize myLotteryPrize;
+        List<String> gameHistory;
+        String gameResult;
         String prize;
         String option;
         
+        gameHistory = new ArrayList<>();
         
         do {
 
@@ -47,12 +52,22 @@ public class LotteryApp{
                 myLotteryPrize.setGuessedNumbers(matchedNumbers.size());
                 myLotteryPrize.checkPrize();
                 prize = myLotteryPrize.getPrize();
-                System.out.println(prize);
+
+                gameResult = "Lottery Line = " + lotteryLine + 
+                             " your line was = " + userLines[i] + 
+                             " you have guessed " + matchedNumbers.size() + " numbers " +
+                             " and your prize is " + prize;
+
+                gameHistory.add(gameResult);
                 
             }
 
             option = JOptionPane.showInputDialog(null,"Would you like to continue Y or N:");
             
         } while (option.equals("Y"));
+
+        for (int i = 0; i<gameHistory.size(); i++) {
+            System.out.println(gameHistory.get(i));
+        }
     }
 }

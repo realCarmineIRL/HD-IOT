@@ -34,7 +34,7 @@ public class LotteryPrize{
                 prize = "Won the Lottery";
                 break;
             default:
-                prize = "Try again you may be lucky next time";
+                prize = "0";
         }
     }
 
