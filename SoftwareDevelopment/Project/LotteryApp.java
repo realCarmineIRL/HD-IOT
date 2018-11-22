@@ -6,8 +6,6 @@ Carmine
 import java.util.*;
 import javax.swing.*;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-
 public class LotteryApp{
     public static void main(String[] args) {
         
