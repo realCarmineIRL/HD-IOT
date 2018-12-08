@@ -22,13 +22,12 @@ public class LotteryApp{
         String errorMsg;
         String showGameHistory;
         
-        gameHistory = new ArrayList<>();
-        showGameHistory = "";
-        
         do {
 
+            gameHistory = new ArrayList<>();
+            showGameHistory = "";
+
             myLotteryGenLine = new LotteryGenLine();
-            myLotteryCheckUserLine = new LotteryCheckUserLine();
             myLotteryPrize = new LotteryPrize();
 
             myLotteryGenLine.genLotteryLine();
@@ -38,7 +37,9 @@ public class LotteryApp{
                 isValid = false;
                 errorMsg = "";
                 do {
-                    userLines[i] = JOptionPane.showInputDialog(null,"Please enter your line number " + (i+1) +":");
+                    myLotteryCheckUserLine = new LotteryCheckUserLine();
+
+                    userLines[i] = JOptionPane.showInputDialog(null,"Please enter your line number " + (i+1) +" separated by ',' :");
 
                     myLotteryCheckUserLine.setUserLine(userLines[i]);
 
@@ -65,7 +66,7 @@ public class LotteryApp{
                              " your line was = " + userLines[i] + 
                              " you have guessed " + matchedNumbers.size() + " numbers " +
                              " and your prize is " + prize +
-                             "\n";
+                             "\n\n";
 
                 gameHistory.add(gameResult);
                 

@@ -37,9 +37,9 @@ public class LotteryCheckUserLine{
             userLine.add(number);
         }
 
-        if(userLine.size() > 6) {
+        if(userLine.size() <= 5 || userLine.size() > 6) {
             isValid = false;
-            errorMsg = "You have introduced more than 6 numbers";
+            errorMsg = "You have introduced invalid numbers, please make sure 6 numbers are introduced";
         }
     }
 
