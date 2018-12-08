@@ -17,8 +17,13 @@ public class LotteryApp{
         String gameResult;
         String prize;
         String option;
+        String[] userLines = new String[3];
+        boolean isValid;
+        String errorMsg;
+        String showGameHistory;
         
         gameHistory = new ArrayList<>();
+        showGameHistory = "";
         
         do {
 
@@ -29,20 +34,25 @@ public class LotteryApp{
             myLotteryGenLine.genLotteryLine();
             lotteryLine = myLotteryGenLine.getLotteryLine();
 
-            String[] userLines = new String[3];
-
             for (int i=0; i<userLines.length; i++) {
-                userLines[i] = JOptionPane.showInputDialog(null,"Please enter your line number " + (i+1) +":");
-            }
+                isValid = false;
+                errorMsg = "";
+                do {
+                    userLines[i] = JOptionPane.showInputDialog(null,"Please enter your line number " + (i+1) +":");
 
-            System.out.println(lotteryLine);
+                    myLotteryCheckUserLine.setUserLine(userLines[i]);
 
-            for(int i=0; i<userLines.length; i++) {
+                    myLotteryCheckUserLine.compute();
 
-                myLotteryCheckUserLine.setUserLine(userLines[i]);
+                    isValid = myLotteryCheckUserLine.getIsValid();
 
-                myLotteryCheckUserLine.compute();
-        
+                    if(!isValid) {
+                        errorMsg = myLotteryCheckUserLine.getErrorMsg();
+                        JOptionPane.showMessageDialog(null,errorMsg);
+                    } 
+                    
+                } while (!isValid);
+
                 List<Integer> matchedNumbers = myLotteryCheckUserLine.getUserLine();
         
                 matchedNumbers.retainAll(lotteryLine);
@@ -54,18 +64,22 @@ public class LotteryApp{
                 gameResult = "Lottery Line = " + lotteryLine + 
                              " your line was = " + userLines[i] + 
                              " you have guessed " + matchedNumbers.size() + " numbers " +
-                             " and your prize is " + prize;
+                             " and your prize is " + prize +
+                             "\n";
 
                 gameHistory.add(gameResult);
                 
             }
 
+            for (int i = 0; i<gameHistory.size(); i++) {
+                showGameHistory += gameHistory.get(i);
+            }
+
+            JOptionPane.showMessageDialog(null,showGameHistory);
+
             option = JOptionPane.showInputDialog(null,"Would you like to continue Y or N:");
             
         } while (option.equals("Y"));
 
-        for (int i = 0; i<gameHistory.size(); i++) {
-            System.out.println(gameHistory.get(i));
-        }
     }
 }
