@@ -7,18 +7,22 @@ import java.util.*;
 
 public class LotteryPrize{
 
+    //Declare
     private int guessedNumbers;
     private String prize;
 
+    //Constructor
     public LotteryPrize(){
         guessedNumbers = 0;
         prize = "";
     }
 
+    //Setter
     public void setGuessedNumbers(int guessedNumbers){
         this.guessedNumbers = guessedNumbers;
     }
 
+    //Compute
     public void checkPrize() {
         switch(guessedNumbers) {
             case 3: 
@@ -38,6 +42,7 @@ public class LotteryPrize{
         }
     }
 
+    //Getter
     public String getPrize(){
         return prize;
     }

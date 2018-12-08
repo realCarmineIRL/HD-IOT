@@ -9,6 +9,7 @@ import javax.swing.*;
 public class LotteryApp{
     public static void main(String[] args) {
         
+        //Declare Variables
         List<Integer> lotteryLine;
         LotteryGenLine myLotteryGenLine;
         LotteryCheckUserLine myLotteryCheckUserLine;
@@ -22,6 +23,7 @@ public class LotteryApp{
         String errorMsg;
         String showGameHistory;
         
+        //Loop
         do {
 
             gameHistory = new ArrayList<>();
@@ -34,7 +36,7 @@ public class LotteryApp{
             lotteryLine = myLotteryGenLine.getLotteryLine();
 
             //System.out.println(lotteryLine);
-
+            //Check line introduced by user
             for (int i=0; i<userLines.length; i++) {
                 isValid = false;
                 errorMsg = "";
@@ -57,13 +59,15 @@ public class LotteryApp{
                 } while (!isValid);
 
                 List<Integer> matchedNumbers = myLotteryCheckUserLine.getUserLine();
-        
+                //get match numbers between user line and lottery line
                 matchedNumbers.retainAll(lotteryLine);
 
+                //Checking number of matched numbers
                 myLotteryPrize.setGuessedNumbers(matchedNumbers.size());
                 myLotteryPrize.checkPrize();
                 prize = myLotteryPrize.getPrize();
 
+                //get result of game
                 gameResult = "Lottery Line = " + lotteryLine + 
                              " your line was = " + userLines[i] + 
                              " you have guessed " + matchedNumbers.size() + " numbers " +
@@ -77,9 +81,10 @@ public class LotteryApp{
             for (int i = 0; i<gameHistory.size(); i++) {
                 showGameHistory += gameHistory.get(i);
             }
-
+            //Print result in popup message
             JOptionPane.showMessageDialog(null,showGameHistory);
 
+            //Play Again
             option = JOptionPane.showInputDialog(null,"Would you like to continue Y or N:");
             
         } while (option.equals("Y"));
