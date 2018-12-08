@@ -30,6 +30,10 @@ public class LotteryCheckUserLine{
 
         for (int i=0; i<numbers.length; i++) {
             int number = Integer.parseInt(numbers[i]);
+            if(number <= 0 || number > 40) {
+                isValid = false;
+                errorMsg = "Number " + number + " in line out of range.";
+            }
             userLine.add(number);
         }
 
