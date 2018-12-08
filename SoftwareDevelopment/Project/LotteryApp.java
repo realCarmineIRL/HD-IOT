@@ -33,6 +33,8 @@ public class LotteryApp{
             myLotteryGenLine.genLotteryLine();
             lotteryLine = myLotteryGenLine.getLotteryLine();
 
+            //System.out.println(lotteryLine);
+
             for (int i=0; i<userLines.length; i++) {
                 isValid = false;
                 errorMsg = "";
